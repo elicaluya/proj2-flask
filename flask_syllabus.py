@@ -4,6 +4,7 @@ displaying a course schedule.
 
 """
 
+
 import flask
 from flask import render_template
 from flask import request
@@ -37,11 +38,11 @@ import CONFIG
 @app.route("/schedule")
 def index():
   app.logger.debug("Main page entry")
-  if 'schedule' not in flask.session:
+  #if 'schedule' not in flask.session:
+  if True:   # FIXME
       app.logger.debug("Processing raw schedule file")
       raw = open(CONFIG.schedule)
       flask.session['schedule'] = pre.process(raw)
-
   return flask.render_template('syllabus.html')
 
 
@@ -64,7 +65,7 @@ def format_arrow_date( date ):
         return normal.format("ddd MM/DD/YYYY")
     except:
         return "(bad date)"
-
+                
 
 #############
 #    
